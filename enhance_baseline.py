@@ -1,20 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-数字图像处理大作业 —— 基础版（Baseline）
-==========================================
-任务：低光照 / 低对比度彩色图像的增强
 
-数据准备（make_low_light）：
-    在 HSV 空间只对亮度通道 V 做伽马(γ=2.5)变暗，
-    色调 H、饱和度 S 保持不变，以此模拟低光照采集图像。
-
-基础版增强（enhance_baseline）：
-    直接对彩色图像的 B、G、R 三个通道分别做
-    【全局直方图均衡化（Global Histogram Equalization, HE）】。
-
-运行：python enhance_baseline.py
-依赖：opencv-python、numpy
-"""
 import os
 import cv2
 import numpy as np
@@ -39,7 +23,7 @@ def make_low_light(img_bgr, gamma=2.5):
 
 def enhance_baseline(img_bgr):
     """
-    基础版增强：把 BGR 三通道拆开，对每个通道【独立】做全局直方图均衡化，
+    基础版增强：把 BGR 三通道拆开，对每个通道独立做全局直方图均衡化，
     再合并回彩色图像。
     直方图均衡化：以累积分布函数(CDF)作为映射，把灰度分布拉伸到整个 0~255。
     """
