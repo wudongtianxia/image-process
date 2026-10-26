@@ -1,28 +1,8 @@
-# -*- coding: utf-8 -*-
-"""
-数字图像处理大作业 —— 改进版（Improved）
-==========================================
-在基础版 enhance_baseline.py 的基础上做两处关键修改：
 
-【修改1】颜色空间：不再直接对 BGR 三通道分别均衡化，
-         而是在 HSV 空间只对亮度通道 V 做增强，
-         色调 H、饱和度 S 保持不变 —— 解决颜色失真问题。
-
-【修改2】增强算法：用 “CLAHE（限制对比度自适应直方图均衡化）
-         + 伽马提亮” 替代全局直方图均衡化。
-         - CLAHE：分块(tile)自适应均衡化，照顾局部对比度，
-           并通过 clipLimit 限制对比度，抑制噪声放大和局部过增强；
-         - 伽马提亮(γ=0.45)：在 CLAHE 之后整体提亮，
-           把亮度恢复到接近正常光照水平。
-
-运行：python enhance_improved.py
-依赖：opencv-python、numpy
-"""
 import os
 import cv2
 import numpy as np
 
-# 复用基础版的数据准备（低光照模拟），保证两版输入完全一致、可公平对比
 from enhance_baseline import make_low_light, _gamma_table
 
 
